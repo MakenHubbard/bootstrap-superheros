@@ -2,29 +2,38 @@ const startApplication = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", executeThisCodeAfterFileLoaded);
     myRequest.addEventListener("error", executeThisIfXHRFails);
-    myRequest.open("GET","/db/superheros.json")
+    myRequest.open("GET", "/db/superheros.json")
     myRequest.send();
 }
 
 startApplication();
 
-function executeThisCodeAfterFileLoaded(){
+function executeThisCodeAfterFileLoaded() {
     const data = JSON.parse(this.responseText);
     const domString = buildDomString(data.superheroes);
-    printToDom(domString,"supers");
-} 
+    printToDom(domString, "supers");
+}
 
-function executeThisIfXHRFails (){
+function executeThisIfXHRFails() {
     console.log("error");
 }
 
 const buildDomString = (superheroesArray) => {
     let domString = '';
     superheroesArray.forEach((superheroes) => {
-        domString += `<div class="supers">
-                        <h3>${superheroes.id}</h3>
+        domString += `<div class="col-sm-3"> 
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">${superheroes.name}</h3>
+                            </div>
+                        <div class="panel-body">
+                            <img class="charImage"src="${superheroes.image}">
+                            <p class="charDescription">${superheroes.description}</p>
+                        </div>
+                        </div>
                      </div>`
-                     console.log(buildDomString);
+        console.log(buildDomString);
+
     })
     return domString;
 }
