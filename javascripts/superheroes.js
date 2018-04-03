@@ -26,9 +26,13 @@ const buildDomString = (superheroesArray) => {
                             <div class="panel-heading">
                                 <h3 class="panel-title">${superheroes.name}</h3>
                             </div>
-                        <div class="panel-body">
-                            <img class="charImage"src="${superheroes.image}">
-                            <p class="charDescription">${superheroes.description}</p>
+                        <div class="panel-body">`;
+                        if (superheroes.gender === 'Male'){
+                            domString += `<img class="charImage maleImage" src="${superheroes.image}">`
+                        } else {
+                            domString += `<img class="charImage femaleImage" src="${superheroes.image}">`
+                        }
+                            domString += `<p class="charDescription">${superheroes.description}</p>
                         </div>
                         </div>
                      </div>`
